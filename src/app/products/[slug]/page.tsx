@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, use } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -13,7 +13,7 @@ import { allProducts, type Product } from "@/lib/products";
 const sizes = ["S", "M", "L", "XL", "2XL"];
 
 export default function ProductDetailPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = require("react").use(params);
+  const { slug } = use(params);
   const product = allProducts.find((p) => p.slug === slug);
 
   if (!product) {
@@ -204,7 +204,6 @@ function ProductDetail({ product }: { product: Product }) {
                   onPointerMove={handlePointerMove}
                   onPointerUp={handlePointerUp}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={logoSrc}
                     alt="Your logo"
@@ -240,7 +239,6 @@ function ProductDetail({ product }: { product: Product }) {
                   </button>
                 </div>
                 <div className="relative aspect-square overflow-hidden bg-gray-100">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={renderedImage}
                     alt="AI-rendered mockup"
